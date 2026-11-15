@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "리서치 포켓",
+  "description": "유튜브 영상을 모으고, Gemini 노트북의 소스를 Markdown 파일로 저장하세요.",
+  "version": "1.1.0",
+  "minimum_chrome_version": "116",
+  "permissions": ["sidePanel", "scripting", "storage", "clipboardWrite"],
+  "host_permissions": [
+    "https://www.youtube.com/*",
+    "https://notebook.google.com/*",
+    "https://notebooklm.google.com/*"
+  ],
+  "action": { "default_title": "리서치 포켓 열기", "default_icon": { "16": "icons/16.png", "32": "icons/32.png" } },
+  "icons": { "16": "icons/16.png", "32": "icons/32.png", "48": "icons/48.png", "128": "icons/128.png" },
+  "background": { "service_worker": "background.js", "type": "module" },
+  "side_panel": { "default_path": "panel.html" },
+  "content_security_policy": { "extension_pages": "script-src 'self'; object-src 'self'" }
+}

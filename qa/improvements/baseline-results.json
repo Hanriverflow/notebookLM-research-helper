@@ -1,0 +1,7 @@
+{
+  "baselineMetadataBug": true,
+  "baselineRefreshBug": true,
+  "textRequestsBefore": 3,
+  "textRequestsAfter": 3,
+  "extensionInstall": "ego task.cdp does not expose Extensions commands"
+}

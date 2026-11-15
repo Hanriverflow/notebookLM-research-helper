@@ -1,0 +1,13 @@
+import { collectYouTube } from '../extension/page-actions.js';
+import { writeFile } from 'node:fs/promises';
+const task = await taskSpace(2);
+const page = task.page('p2');
+await page.click('#tab-sources');
+await page.evaluate(() => window.scrollTo(0, 0));
+await page.screenshot({ path: 'D:/Code/Projects/youtube_search/research-helper/qa/sources-preview.png' });
+await page.click('#tab-videos');
+await page.evaluate(() => window.scrollTo(0, 0));
+await page.screenshot({ path: 'D:/Code/Projects/youtube_search/research-helper/qa/videos-preview.png' });
+const result = await task.page('p1').evaluate(collectYouTube, { scroll: false });
+await writeFile('D:/Code/Projects/youtube_search/research-helper/qa/live-youtube.json', JSON.stringify(result, null, 2));
+console.log({ liveCount: result.videos.length, channel: result.videos[0].channel, screenshotsSaved: true });

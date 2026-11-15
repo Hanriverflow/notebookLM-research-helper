@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>리서치 포켓</title>
+  <link rel="stylesheet" href="panel.css">
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="brand"><span class="logo" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 4h14v11l-7 5-7-5z"/><path d="m9 10 3 3 3-3"/></svg></span><div><strong>리서치 포켓</strong><span>좋은 자료를, 내 주머니에.</span></div></div>
+      <a class="help-link" href="help.html" target="_blank" title="사용 방법" aria-label="사용 방법">?</a>
+    </header>
+    <div class="context"><span id="context-dot" class="dot"></span><span id="context-label">현재 탭 확인 중…</span><button id="refresh-context" class="icon-button" aria-label="현재 탭 다시 확인" title="현재 탭 다시 확인">↻</button></div>
+    <nav class="tabs" aria-label="작업 선택">
+      <button id="tab-videos" class="tab active" aria-pressed="true"><span>01</span> 영상 모으기</button>
+      <button id="tab-sources" class="tab" aria-pressed="false"><span>02</span> 자료 저장</button>
+    </nav>
+    <main>
+      <section id="videos-view" aria-labelledby="video-heading">
+        <div class="intro"><p class="eyebrow">YOUTUBE → NOTEBOOK</p><h1 id="video-heading">하나씩 복사하지 마세요.</h1><p>마음에 드는 영상을 모아<br>노트북으로 가져가세요.</p></div>
+        <div class="collect-card">
+          <div class="collect-top"><label for="video-limit">한 번에 모을 영상</label><select id="video-limit"><option value="0">현재 목록만</option><option value="30" selected>최대 30개</option><option value="50">최대 50개</option><option value="100">최대 100개</option></select></div>
+          <button id="collect-videos" class="button primary wide"><span aria-hidden="true">＋</span> 이 탭에서 영상 모으기</button>
+          <p class="micro">필요한 만큼 아래로 스크롤하며 모읍니다.</p>
+        </div>
+        <details class="manual"><summary>영상 링크를 직접 넣고 싶어요</summary><label class="sr-only" for="manual-urls">유튜브 영상 링크</label><textarea id="manual-urls" placeholder="영상 주소를 붙여 넣으세요.\n여러 개도 한 번에 넣을 수 있어요." rows="3"></textarea><button id="add-urls" class="button secondary small">목록에 추가</button></details>
+        <label class="search-label" for="video-search">모은 영상 검색</label><input id="video-search" class="search-input" type="search" placeholder="제목, 채널 또는 주소">
+        <div class="list-toolbar"><label class="check-label"><input id="select-videos" type="checkbox" aria-label="표시된 영상 전체 선택"><span>모은 영상 <b id="video-count">0</b></span></label><span id="video-visible" class="muted">0개 표시</span><button id="clear-videos" class="text-button" disabled>목록 비우기</button></div>
+        <div id="video-list" class="item-list"></div>
+        <p id="video-no-results" class="micro" hidden>검색과 일치하는 영상이 없습니다.</p>
+        <div class="list-controls"><button id="delete-videos" class="text-button" disabled>선택 0개 삭제</button><button id="undo-delete" class="text-button" hidden>삭제 취소</button></div>
+        <div id="video-empty" class="empty"><span class="empty-icon" aria-hidden="true">↳</span><strong>첫 번째 자료를 모아 볼까요?</strong><p>유튜브 검색 결과나 채널의 동영상 탭에서<br>위 버튼을 눌러 주세요.</p><button id="open-youtube" class="text-button">유튜브 열기 ↗</button></div>
+        <div id="video-actions" class="bottom-actions" hidden><div class="selection-info"><span><b id="video-selected">0</b>개 선택</span><span>중복 링크는 자동으로 정리해요</span></div><button id="send-notebook" class="button primary wide">링크 복사하고 노트북 열기 <span aria-hidden="true">↗</span></button><div class="secondary-actions"><button id="copy-links" class="button secondary">링크만 복사</button><button id="save-links" class="button secondary">목록 저장</button></div></div>
+      </section>
+      <section id="sources-view" hidden aria-labelledby="source-heading">
+        <div class="intro"><p class="eyebrow">NOTEBOOK → MY FILES</p><h1 id="source-heading">자료를 한 파일로.</h1><p>노트북에 담긴 본문을 꺼내<br>다른 AI나 Obsidian에서 이어 쓰세요.</p></div>
+        <div id="handoff-note" class="handoff" hidden><strong>링크를 복사했어요.</strong><p>노트북에서 <b>소스 추가 → 웹사이트</b>를 열고 <kbd>Ctrl</kbd> + <kbd>V</kbd>로 붙여 넣으세요. 가져오기가 끝나면 아래 버튼을 누르세요.</p></div>
+        <label class="search-label" for="notebook-target">현재 창의 노트북</label><select id="notebook-target" class="notebook-target"><option value="">노트북 선택</option></select>
+        <button id="load-sources" class="button primary wide">선택한 노트북의 소스 불러오기 <span aria-hidden="true">↓</span></button>
+        <p id="cooldown" class="notice" role="status" hidden></p>
+        <div id="notebook-info" class="notebook-info" hidden><span class="eyebrow">열어 본 노트북</span><strong id="notebook-title"></strong></div>
+        <p id="notebook-target-note" class="micro" hidden></p>
+        <div class="list-toolbar"><label class="check-label"><input id="select-sources" type="checkbox" aria-label="소스 전체 선택"><span>소스 <b id="source-count">0</b></span></label><span id="source-selected" class="muted">0개 선택</span></div>
+        <div id="source-list" class="item-list"></div>
+        <div id="source-omissions" class="omissions" aria-label="목록에서 확인하지 못한 소스" hidden></div>
+        <div id="source-empty" class="empty"><span class="empty-icon" aria-hidden="true">↓</span><strong>꺼내고 싶은 노트북을 열어 주세요.</strong><p>자료가 있는 노트북 안에서<br>‘소스 불러오기’를 누르면 됩니다.</p><button id="open-notebook" class="text-button">노트북 열기 ↗</button></div>
+        <div id="source-actions" class="bottom-actions" hidden><button id="extract-sources" class="button primary wide">선택한 자료 최신 본문 추출</button><button id="retry-sources" class="button secondary wide retry-button">실패·미완료 자료 재시도</button><div class="secondary-actions"><button id="download-markdown" class="button secondary" disabled>.md 파일 저장</button><button id="copy-markdown" class="button secondary" disabled>본문 복사</button></div><p class="micro">이전 본문은 갱신에 실패해도 보존합니다.<br>패널을 닫기 전에 파일로 저장하세요.</p></div>
+      </section>
+      <div id="activity" class="activity" hidden><div class="activity-top"><span id="activity-text">작업 중…</span><button id="stop-job" class="text-button">중지</button></div><progress id="progress" aria-label="작업 진행률"></progress></div>
+      <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+    </main>
+    <footer>내 브라우저에서 수집 · 내 파일로 저장 <span>v1.1</span></footer>
+  </div>
+  <script type="module" src="panel.js"></script>
+</body>
+</html>

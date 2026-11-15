@@ -1,0 +1,10 @@
+const task = await taskSpace(2);
+const page = task.page('p2');
+const win = await task.cdp('Browser.getWindowForTarget', { targetId: page.targetId });
+if (win.bounds.windowState === 'minimized') await task.cdp('Browser.setWindowBounds', { windowId: win.windowId, bounds: { windowState: 'normal' } });
+await page.evaluate(() => window.scrollTo(0, 0));
+await page.screenshot({ path: 'D:/Code/Projects/youtube_search/research-helper/qa/sources-preview.png' });
+await page.click('#tab-videos');
+await page.evaluate(() => window.scrollTo(0, 0));
+await page.screenshot({ path: 'D:/Code/Projects/youtube_search/research-helper/qa/videos-preview.png' });
+console.log(await page.snapshot({ scope: 'full_page' }));
