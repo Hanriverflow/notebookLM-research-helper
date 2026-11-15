@@ -36,7 +36,7 @@ No API key, no server, nothing extra to install. Load the extension folder and i
 | Collect videos | Save sources |
 | --- | --- |
 | ![Collect videos panel](qa/videos-preview.png) | ![Save sources panel](qa/panel-preview.png) |
-| Sample data | Sample data |
+| Sample data | Sample data (from 1.0 — some button labels differ in 1.1) |
 
 ## Installation
 
@@ -112,7 +112,7 @@ Notebook text disappears when you close the panel, so save it to a file as soon 
 - Notebook text extraction relies on Google's private internal requests. If Google changes the service, it may stop working.
 - A YouTube video needs captions for its text to be available. Original video, image, and PDF files are not downloaded.
 - Auto-scrolling stops after 45 rounds and collects only what the page actually loaded, so you may end up with fewer videos than you aimed for.
-- Version 1.1.0 has been verified with automated tests only, and it may behave differently in a real browser. If you run into a problem, please let us know. The scope of verification is described in [VALIDATION.md](VALIDATION.md) (in Korean).
+- Version 1.1.0 has been verified with automated tests only, and it may behave differently in a real browser. If you run into a problem, please let me know. The scope of verification is described in [VALIDATION.md](VALIDATION.md) (in Korean).
 
 ## Feedback
 
